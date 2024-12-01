@@ -1,4 +1,4 @@
-package kg.study.ksptestapp.view
+package kg.study.ksptestapp.view.product
 
 import kg.study.ksptestapp.base.SideEffect
 import kg.study.ksptestapp.base.State
@@ -12,5 +12,5 @@ data class ProductsState(
 
 
 sealed class ProductSideEffect: SideEffect() {
-
+    data class Toast(val message: String): ProductSideEffect()
 }

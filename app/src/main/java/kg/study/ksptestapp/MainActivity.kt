@@ -19,7 +19,7 @@ import kg.study.ksptestapp.ui.theme.KspTestAppTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+//        enableEdgeToEdge()
         setContent {
             KspTestAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->

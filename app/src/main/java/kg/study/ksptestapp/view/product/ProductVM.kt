@@ -1,4 +1,4 @@
-package kg.study.ksptestapp.view
+package kg.study.ksptestapp.view.product
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,7 +20,7 @@ class ProductVM @Inject constructor(
         }
 
     private fun fetchProducts() = intent {
-        viewModelScope.launch(handler) {
+        viewModelScope.launch {
             val products = productRepo.fetchProducts()
             reduce {
                 state.copy(loading = false, products = products)

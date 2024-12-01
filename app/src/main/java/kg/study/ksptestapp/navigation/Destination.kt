@@ -12,4 +12,5 @@ sealed interface Destination {
 sealed class Screen(val route: String) {
 
     data object ProductScreen: Screen("ProductScreen")
+    data object UserScreen: Screen("UserScreen")
 }

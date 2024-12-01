@@ -1,4 +1,4 @@
-package kg.study.ksptestapp.view
+package kg.study.ksptestapp.view.product
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,59 +18,67 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import kg.study.ksptestapp.data.model.Product
+import kg.study.ksptestapp.navigation.Screen
+import kg.study.ksptestapp.util.showToast
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Composable
-fun ProductsScreen() {
+fun ProductsScreen(navController: NavController) {
 
     val vm = hiltViewModel<ProductVM>()
-
     val state by vm.collectAsState()
+    val context = LocalContext.current
 
     vm.collectSideEffect { se ->
         when (se) {
-            else -> {}
+            is ProductSideEffect.Toast -> showToast(context, se.message)
         }
     }
 
-    ProductsList(products = state.products ?: emptyList(), loading = state.loading)
+    ProductsList(products = state.products ?: emptyList(), loading = state.loading, navController)
 
 }
 
 @Composable
-fun ProductsList(products: List<Product>, loading: Boolean) {
+fun ProductsList(products: List<Product>, loading: Boolean, navController: NavController) {
     Box(modifier = Modifier.fillMaxSize()) {
         if (loading) Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.Black.copy(alpha = 0.3f)),
+                .background(Color.Black.copy(alpha = 0.3f))
+                .padding(vertical = 12.dp),
             contentAlignment = Alignment.Center,
         ) {
             CircularProgressIndicator()
         }
         LazyColumn {
             items(products) { product ->
-                ProductItem(product = product)
+                ProductItem(product = product, navController)
             }
         }
     }
 }
 
 @Composable
-fun ProductItem(product: Product) {
+fun ProductItem(product: Product, navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
+            .clickable {
+                navController.navigate(Screen.UserScreen.route)
+            }
     ) {
         Text(text = product.title ?: "", fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(12.dp))
-        Text(text = product.description ?: "", fontFamily = FontFamily.Cursive)
+        Text(text = product.description ?: "", fontFamily = FontFamily.Serif)
     }
 }

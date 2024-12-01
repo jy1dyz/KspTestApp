@@ -4,10 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kg.study.ksptestapp.navigation.DefaultNavigator
-import kg.study.ksptestapp.navigation.Destination
-import kg.study.ksptestapp.navigation.Navigator
 import kg.study.ksptestapp.network.ProductApi
+import kg.study.ksptestapp.network.UserApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -49,7 +47,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideNavigator(): Navigator {
-        return DefaultNavigator(destination = Destination.ProductsScreen)
+    fun provideUserApi(retrofit: Retrofit): UserApi {
+        return retrofit.create(UserApi::class.java)
     }
 }
