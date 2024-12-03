@@ -88,6 +88,7 @@ dependencies {
     implementation(libs.orbit.core)
     implementation(libs.compose.navigation)
     implementation(libs.lifecycle.process)
+    implementation(libs.profiler)
 //    implementation(libs.compose.navigation.animation)
 
     coreLibraryDesugaring(libs.desugar.jdk.libs)

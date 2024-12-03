@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.nerdythings.okhttp.profiler.OkHttpProfilerInterceptor
 import kg.study.ksptestapp.network.ProductApi
 import kg.study.ksptestapp.network.UserApi
 import okhttp3.OkHttpClient
@@ -26,6 +27,7 @@ object NetworkModule {
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
+            .addInterceptor(OkHttpProfilerInterceptor())
             .build()
     }
 
