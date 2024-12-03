@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.nerdythings.okhttp.profiler.OkHttpProfilerInterceptor
+import kg.study.ksptestapp.network.CommentApi
 import kg.study.ksptestapp.network.ProductApi
 import kg.study.ksptestapp.network.UserApi
 import okhttp3.OkHttpClient
@@ -51,5 +52,11 @@ object NetworkModule {
     @Singleton
     fun provideUserApi(retrofit: Retrofit): UserApi {
         return retrofit.create(UserApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommentApi(retrofit: Retrofit): CommentApi {
+        return retrofit.create(CommentApi::class.java)
     }
 }

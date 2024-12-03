@@ -70,7 +70,7 @@ fun ProductItem(product: Product, navController: NavController) {
             .fillMaxWidth()
             .padding(12.dp)
             .clickable {
-                navController.navigate(Screen.UserScreen.route)
+                navController.navigate(Screen.CommentScreen.route)
             }
     ) {
         UsualCard(title = product.title ?: "", subtitle = product.description ?: "")
