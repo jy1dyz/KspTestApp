@@ -24,6 +24,7 @@ navigation-compose-animation = "2.7.4"
 desugar-jdk-libs = "2.1.2"
 lifecycle-process = "2.8.7"
 profiler = "1.1.1"
+coil = "2.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -58,6 +59,7 @@ compose-navigation = { group = "androidx.navigation", name = "navigation-compose
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar-jdk-libs" }
 lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycle-process"}
 profiler= { group = "io.nerdythings", name = "okhttp-profiler", version.ref = "profiler"}
+coil= { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

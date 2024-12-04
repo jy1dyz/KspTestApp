@@ -89,6 +89,7 @@ dependencies {
     implementation(libs.compose.navigation)
     implementation(libs.lifecycle.process)
     implementation(libs.profiler)
+    implementation(libs.coil)
 //    implementation(libs.compose.navigation.animation)
 
     coreLibraryDesugaring(libs.desugar.jdk.libs)

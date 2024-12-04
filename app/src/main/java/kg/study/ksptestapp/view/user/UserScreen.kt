@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import kg.study.ksptestapp.base.ui_form.UserCard
 import kg.study.ksptestapp.base.ui_form.UsualCardOfThree
 import kg.study.ksptestapp.data.model.User
 import org.orbitmvi.orbit.compose.collectAsState
@@ -53,6 +54,6 @@ fun UserItem(user: User) {
             .fillMaxWidth()
             .padding(12.dp)
     ) {
-        UsualCardOfThree(title = user.firstName, subtitle = user.lastName, coloredText = user.email)
+        UserCard(user)
     }
 }

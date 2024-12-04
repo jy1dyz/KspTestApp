@@ -1,13 +1,17 @@
 package kg.study.ksptestapp.di
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.nerdythings.okhttp.profiler.OkHttpProfilerInterceptor
+import kg.study.ksptestapp.data.model.Gender
 import kg.study.ksptestapp.network.CommentApi
 import kg.study.ksptestapp.network.ProductApi
 import kg.study.ksptestapp.network.UserApi
+import kg.study.ksptestapp.network.converters.GenderConverter
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -32,12 +36,16 @@ object NetworkModule {
             .build()
     }
 
+    val gson: Gson = GsonBuilder()
+        .registerTypeAdapter(Gender::class.java, GenderConverter())
+        .create()
+
     @Provides
     @Singleton
     fun provideRetrofit(baseUrl: String): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(provideOkHttpClient())
             .build()
     }
