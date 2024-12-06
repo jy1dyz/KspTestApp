@@ -13,22 +13,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import kg.study.ksptestapp.base.ui_form.AsyncCoilImage
+import kg.study.ksptestapp.base.ui_form.BoldText
 import kg.study.ksptestapp.base.ui_form.UserCard
-import kg.study.ksptestapp.base.ui_form.UsualCardOfThree
 import kg.study.ksptestapp.data.model.User
+import kg.study.ksptestapp.view.login.LoginState
+import kg.study.ksptestapp.view.login.LoginVM
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
 fun UserScreen() {
 
+    val loginVM = hiltViewModel<LoginVM>()
     val vm = hiltViewModel<UserVM>()
     val state = vm.collectAsState()
+    val loginState = loginVM.collectAsState()
 
-    UsersList(state = state.value)
+    UsersList(state = state.value, loginState = loginState.value)
 }
 
 @Composable
-fun UsersList(state: UserState) {
+fun UsersList(state: UserState, loginState: LoginState) {
     Box(modifier = Modifier.fillMaxSize()) {
         if (state.loading) Box(
             modifier = Modifier
@@ -40,6 +45,16 @@ fun UsersList(state: UserState) {
         }
         val users = state.users ?: emptyList()
         LazyColumn {
+            item {
+                val authModel = loginState.userAuthModel
+                Column(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(12.dp)) {
+                    BoldText(title = authModel?.username ?: "")
+                    BoldText(title = authModel?.email ?: "")
+                    AsyncCoilImage(authModel?.image ?: "")
+                }
+            }
             items(users) { user ->
                 UserItem(user = user)
             }

@@ -49,4 +49,16 @@ enum class Role(val value: String) {
     ADMIN("admin")
 }
 
+data class UserAuthModel(
+    val id: Int,
+    val username: String,
+    val email: String,
+    val firstName: String,
+    val lastName: String,
+    val gender: Gender,
+    val image: String,
+    val accessToken: String,
+    val refreshToken: String
+)
+
 
