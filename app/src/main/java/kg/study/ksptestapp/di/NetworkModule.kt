@@ -7,12 +7,15 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.nerdythings.okhttp.profiler.OkHttpProfilerInterceptor
+import kg.study.ksptestapp.data.model.Difficulty
 import kg.study.ksptestapp.data.model.Gender
 import kg.study.ksptestapp.network.AuthApi
 import kg.study.ksptestapp.network.CommentApi
 import kg.study.ksptestapp.network.PostApi
 import kg.study.ksptestapp.network.ProductApi
+import kg.study.ksptestapp.network.RecipeApi
 import kg.study.ksptestapp.network.UserApi
+import kg.study.ksptestapp.network.converters.DifficultyConverter
 import kg.study.ksptestapp.network.converters.GenderConverter
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,6 +43,7 @@ object NetworkModule {
 
     val gson: Gson = GsonBuilder()
         .registerTypeAdapter(Gender::class.java, GenderConverter())
+        .registerTypeAdapter(Difficulty::class.java, DifficultyConverter())
         .create()
 
     @Provides
@@ -80,5 +84,11 @@ object NetworkModule {
     @Singleton
     fun provideAuthApi(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRecipeApi(retrofit: Retrofit): RecipeApi {
+        return retrofit.create(RecipeApi::class.java)
     }
 }

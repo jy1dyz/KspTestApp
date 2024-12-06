@@ -21,7 +21,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import kg.study.ksptestapp.base.ui_form.ProductCard
 import kg.study.ksptestapp.data.model.Product
-import kg.study.ksptestapp.navigation.Screen
 import kg.study.ksptestapp.util.showToast
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
@@ -69,9 +68,7 @@ fun ProductItem(product: Product, navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
-            .clickable {
-                navController.navigate(Screen.UserScreen.route)
-            }
+            .clickable {}
     ) {
         ProductCard(product)
     }
