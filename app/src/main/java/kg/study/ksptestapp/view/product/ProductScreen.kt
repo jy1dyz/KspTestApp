@@ -19,7 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import kg.study.ksptestapp.base.ui_form.UsualCard
+import kg.study.ksptestapp.base.ui_form.ProductCard
 import kg.study.ksptestapp.data.model.Product
 import kg.study.ksptestapp.navigation.Screen
 import kg.study.ksptestapp.util.showToast
@@ -73,6 +73,6 @@ fun ProductItem(product: Product, navController: NavController) {
                 navController.navigate(Screen.PostScreen.route)
             }
     ) {
-        UsualCard(title = product.title ?: "", subtitle = product.description ?: "")
+        ProductCard(product)
     }
 }
