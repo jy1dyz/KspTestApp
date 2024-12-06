@@ -18,7 +18,9 @@ fun CoilImage(url: String) {
     Image(
         painter = rememberAsyncImagePainter(url), // Image URL
         contentDescription = "downloaded Image",
-        modifier = Modifier.size(128.dp).clip(shape = RoundedCornerShape(16.dp)) // Adjust size as needed
+        modifier = Modifier
+            .size(128.dp)
+            .clip(shape = RoundedCornerShape(16.dp)) // Adjust size as needed
     )
 }
 

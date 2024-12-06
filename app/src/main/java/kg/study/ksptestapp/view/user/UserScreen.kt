@@ -15,7 +15,7 @@ import kg.study.ksptestapp.base.ui_form.BoldText
 import kg.study.ksptestapp.base.ui_form.LoadingScreen
 import kg.study.ksptestapp.base.ui_form.UserCard
 import kg.study.ksptestapp.data.model.User
-import kg.study.ksptestapp.view.login.LoginState
+import kg.study.ksptestapp.data.model.UserAuthModel
 import kg.study.ksptestapp.view.login.LoginVM
 import org.orbitmvi.orbit.compose.collectAsState
 
@@ -29,23 +29,22 @@ fun UserScreen() {
 
     when (state.loading) {
         true -> LoadingScreen()
-        else -> UsersList(state = state, loginState = loginState)
+        else -> loginState.userAuthModel?.let { UsersList(users = state.users ?: emptyList(), it) }
     }
-    UsersList(state = state, loginState = loginState)
 }
 
 @Composable
-fun UsersList(state: UserState, loginState: LoginState) {
-    val users = state.users ?: emptyList()
+fun UsersList(users: List<User>, authModel: UserAuthModel) {
     LazyColumn {
         item {
-            val authModel = loginState.userAuthModel
-            Column(modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp)) {
-                BoldText(title = authModel?.username ?: "")
-                BoldText(title = authModel?.email ?: "")
-                AsyncCoilImage(authModel?.image ?: "")
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(12.dp)
+            ) {
+                BoldText(title = authModel.username ?: "")
+                BoldText(title = authModel.email ?: "")
+                AsyncCoilImage(authModel.image ?: "")
             }
         }
         items(users) { user ->
@@ -56,11 +55,5 @@ fun UsersList(state: UserState, loginState: LoginState) {
 
 @Composable
 fun UserItem(user: User) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(12.dp)
-    ) {
-        UserCard(user)
-    }
+    UserCard(user)
 }

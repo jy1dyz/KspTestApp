@@ -1,9 +1,7 @@
 package kg.study.ksptestapp.base.ui_form
 
-import android.widget.Space
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
@@ -20,7 +18,7 @@ fun UserCard(user: User) {
         shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp), // Set corner radius
         colors = CardDefaults.cardColors(containerColor = Color.White), // Optional background color
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxWidth().padding(12.dp)
     ) {
         Column(modifier = Modifier.padding(horizontal = 12.dp)) {
             BoldText(title = "${user.firstName} ${user.lastName}")
