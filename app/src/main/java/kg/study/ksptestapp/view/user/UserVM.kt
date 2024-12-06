@@ -17,6 +17,7 @@ class UserVM @Inject constructor(
     }
 
     private fun fetchUsers() = intent {
+        reduce { state.copy(loading = true) }
         val users = repo.fetchUsers()
         reduce { state.copy(users = users, loading = false) }
     }

@@ -5,7 +5,7 @@ import kg.study.ksptestapp.base.State
 import kg.study.ksptestapp.data.model.User
 
 data class UserState(
-    val loading: Boolean = true,
+    val loading: Boolean = false,
     val users: List<User>? = emptyList()
 ): State()
 

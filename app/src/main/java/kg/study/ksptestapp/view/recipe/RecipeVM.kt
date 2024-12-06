@@ -18,9 +18,10 @@ class RecipeVM @Inject constructor(
         }
 
     private fun fetchRecipes() = intent {
+        reduce { state.copy(loading = true) }
         val recipes = repo.fetchRecipes()
         reduce {
-            state.copy(recipes = recipes)
+            state.copy(recipes = recipes, loading = false)
         }
     }
 }

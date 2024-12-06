@@ -6,7 +6,7 @@ import kg.study.ksptestapp.data.model.Comment
 
 data class CommentState(
     val comments: List<Comment>? = emptyList(),
-    val loading: Boolean = true
+    val loading: Boolean = false
 ): State()
 
 sealed class CommentSideEffect: SideEffect()

@@ -1,10 +1,8 @@
 package kg.study.ksptestapp.view.product
 
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kg.study.ksptestapp.base.BaseVM
 import kg.study.ksptestapp.data.ProductRepo
-import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
@@ -20,13 +18,9 @@ class ProductVM @Inject constructor(
         }
 
     private fun fetchProducts() = intent {
-        viewModelScope.launch {
-            val products = productRepo.fetchProducts()
-            reduce {
-                state.copy(loading = false, products = products)
-            }
-        }
+        reduce { state.copy(loading = true) }
+        val products = productRepo.fetchProducts()
+        reduce { state.copy(loading = false, products = products) }
     }
-
 
 }

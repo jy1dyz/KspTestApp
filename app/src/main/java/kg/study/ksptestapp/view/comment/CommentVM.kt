@@ -18,6 +18,7 @@ class CommentVM @Inject constructor(
         }
 
     private fun fetchComments() = intent {
+        reduce { state.copy(loading = true) }
         val comments = repo.fetchComments()
         reduce { state.copy(comments = comments, loading = false) }
     }
