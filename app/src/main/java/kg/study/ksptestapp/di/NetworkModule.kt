@@ -10,6 +10,7 @@ import io.nerdythings.okhttp.profiler.OkHttpProfilerInterceptor
 import kg.study.ksptestapp.data.model.Difficulty
 import kg.study.ksptestapp.data.model.Gender
 import kg.study.ksptestapp.network.AuthApi
+import kg.study.ksptestapp.network.CartApi
 import kg.study.ksptestapp.network.CommentApi
 import kg.study.ksptestapp.network.PostApi
 import kg.study.ksptestapp.network.ProductApi
@@ -90,5 +91,11 @@ object NetworkModule {
     @Singleton
     fun provideRecipeApi(retrofit: Retrofit): RecipeApi {
         return retrofit.create(RecipeApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCartApi(retrofit: Retrofit): CartApi {
+        return retrofit.create(CartApi::class.java)
     }
 }

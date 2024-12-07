@@ -23,7 +23,8 @@ class MainVM @Inject constructor(): BaseVM<MainState, MainSideEffect>(MainState(
             Screen.CommentScreen,
             Screen.PostScreen,
             Screen.ProductScreen,
-            Screen.RecipesScreen
+            Screen.RecipesScreen,
+            Screen.CartsScreen
         )
         reduce { state.copy(screens = screens) }
     }

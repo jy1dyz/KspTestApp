@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kg.study.ksptestapp.MainScreen
+import kg.study.ksptestapp.view.cart.CartsScreen
 import kg.study.ksptestapp.view.comment.CommentScreen
 import kg.study.ksptestapp.view.post.PostScreen
 import kg.study.ksptestapp.view.product.ProductsScreen
@@ -38,6 +39,10 @@ fun AppNavigation() {
 
         composable(Screen.RecipesScreen.route) {
             RecipesScreen()
+        }
+
+        composable(Screen.CartsScreen.route) {
+            CartsScreen()
         }
     }
 }
