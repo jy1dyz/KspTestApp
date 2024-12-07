@@ -4,6 +4,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kg.study.ksptestapp.base.BaseVM
 import kg.study.ksptestapp.base.SideEffect
 import kg.study.ksptestapp.base.State
+import kg.study.ksptestapp.data.model.ScreenItem
 import kg.study.ksptestapp.navigation.Screen
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.viewmodel.container
@@ -26,12 +27,21 @@ class MainVM @Inject constructor(): BaseVM<MainState, MainSideEffect>(MainState(
             Screen.RecipesScreen,
             Screen.CartsScreen
         )
-        reduce { state.copy(screens = screens) }
+        val items = listOf(
+            ScreenItem(Screen.UserScreen),
+            ScreenItem(Screen.CommentScreen),
+            ScreenItem(Screen.ProductScreen),
+            ScreenItem(Screen.PostScreen),
+            ScreenItem(Screen.RecipesScreen),
+            ScreenItem(Screen.CartsScreen)
+        )
+        reduce { state.copy(screens = screens, items = items) }
     }
 }
 
 data class MainState(
-    val screens: List<Screen> = emptyList()
+    val screens: List<Screen> = emptyList(),
+    val items: List<ScreenItem> = emptyList()
 ) : State()
 
 sealed class MainSideEffect : SideEffect()

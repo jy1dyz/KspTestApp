@@ -24,7 +24,7 @@ import kg.study.ksptestapp.data.model.Recipe
 fun RecipeCard(recipe: Recipe) {
     Card(
         shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp), // Set corner radius
-        colors = CardDefaults.cardColors(containerColor = Color.White), // Optional background color
+        colors = CardDefaults.cardColors(containerColor = Color.LightGray.copy(alpha = 0.25f)), // Optional background color
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
@@ -56,7 +56,7 @@ fun RecipeCard(recipe: Recipe) {
             BoldText(title = recipe.name)
             LazyColumn {
                 items(recipe.ingredients) { ingredient ->
-                    ColoredText(title = ingredient, color = Color.Yellow)
+                    ColoredText(title = ingredient, color = Color.Magenta)
                 }
             }
             LazyColumn(modifier = Modifier.width(350.dp)) {

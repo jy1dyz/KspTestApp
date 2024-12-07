@@ -26,8 +26,8 @@ fun MainScreen(navController: NavController) {
         horizontalArrangement = Arrangement.spacedBy(8.dp), // Space between columns
         verticalArrangement = Arrangement.spacedBy(8.dp) // Space between rows
     ) {
-        items(state.value.screens) { screen ->
-            ScreenCard(screen = screen, navController)
+        items(state.value.items) { item ->
+            ScreenCard(item = item, navController)
         }
     }
 
