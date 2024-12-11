@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             KspTestAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    AppNavigation()
+                    AppNavigation(intent)
                 }
             }
         }
