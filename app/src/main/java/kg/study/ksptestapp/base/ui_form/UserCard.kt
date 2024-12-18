@@ -18,7 +18,8 @@ fun UserCard(user: User) {
         shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp), // Set corner radius
         colors = CardDefaults.cardColors(containerColor = Color.White), // Optional background color
         modifier = Modifier
-            .fillMaxWidth().padding(12.dp)
+            .fillMaxWidth()
+            .padding(12.dp)
     ) {
         Column(modifier = Modifier.padding(horizontal = 12.dp)) {
             BoldText(title = "${user.firstName} ${user.lastName}")
@@ -28,8 +29,13 @@ fun UserCard(user: User) {
                 ColoredText(title = user.gender.name, color = Color.DarkGray, modifier = Modifier.weight(2f))
                 ColoredText(title = user.bloodGroup, color = Color.Red)
             }
-            UsualText(title = user.university)
-            UsualText(title = user.phone)
+            UsualText(title = user.university ?: "")
+            if (user.isNumberHidden) {
+                UsualText(title = "***-***-****")
+            } else {
+                UsualText(title = user.phone)
+            }
+
             AsyncCoilImage(url = user.image)
         }
     }

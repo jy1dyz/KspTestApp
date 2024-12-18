@@ -19,11 +19,12 @@ data class User(
     val password: String,
     val image: String,
     val bloodGroup: String,
-    val city: String,
-    val state: String,
-    val country: String,
-    val university: String,
-    val bank: Bank
+    val city: String?,
+    val state: String?,
+    val country: String?,
+    val university: String?,
+    val bank: Bank,
+    val isNumberHidden: Boolean = false
 )
 
 @Serializable
