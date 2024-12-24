@@ -1,5 +1,6 @@
 package kg.study.ksptestapp.base.ui_form
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -71,12 +72,16 @@ fun CommentCard(body: String, author: CommentUser, likes: Int) {
                 BoldText(title = author.fullName)
                 UsualText(title = body)
             }
-            Row(modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .weight(0.7f)) {
-                UsualText(title = likes.toString(), modifier = Modifier
-                    .padding(2.dp)
-                    .align(Alignment.CenterVertically))
+            Row(
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+                    .weight(0.7f)
+            ) {
+                UsualText(
+                    title = likes.toString(), modifier = Modifier
+                        .padding(2.dp)
+                        .align(Alignment.CenterVertically)
+                )
                 Icon(
                     imageVector = Icons.Default.Favorite, // Built-in Material Icon
                     contentDescription = "Like icon", // Accessibility description
@@ -86,6 +91,27 @@ fun CommentCard(body: String, author: CommentUser, likes: Int) {
                         .align(Alignment.CenterVertically)
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun ClickableCard(title: String, subtitle: String, onClick: () -> Unit) {
+    Card(
+        shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp), // Set corner radius
+        colors = CardDefaults.cardColors(containerColor = Color.White), // Optional background color
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp)
+            .clickable { onClick() }
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 12.dp)
+                .align(Alignment.CenterHorizontally)
+        ) {
+            BoldText(title = title)
+            UsualText(title = subtitle)
         }
     }
 }
